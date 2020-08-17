@@ -170,7 +170,6 @@ func detectWsl() (bool, error) {
 		if err != nil {
 			return false, fmt.Errorf("read /proc/version: %w", err)
 		}
-
 		var str = strings.ToLower(string(b))
 		if strings.Contains(
 			str,
