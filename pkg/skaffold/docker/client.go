@@ -17,7 +17,6 @@ limitations under the License.
 package docker
 
 import (
-	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -172,7 +171,11 @@ func detectWsl() (bool, error) {
 			return false, fmt.Errorf("read /proc/version: %w", err)
 		}
 
-		if bytes.Contains(b, []byte("Microsoft")) {
+		var str = strings.ToLower(string(b))
+		if strings.Contains(
+			str,
+			"microsoft",
+		) {
 			return true, nil
 		}
 	}
